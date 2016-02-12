@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:itiGeeks="http://java.sun.com/jsf/composite/components">
+
+
+	
+
+	<composite:interface>
+		<composite:attribute name="objectImplementsByteArrayHolder"
+			required="false"
+			type="com.saydaly.common.interfaces.ByteArrayHolder" />
+		<composite:attribute name="defaultImageStyleClass"
+			default="uploadedImageStyleClass" required="false" />
+		<composite:attribute name="imageWidth" default="100" required="false" />
+		<composite:attribute name="ImageHeight" default="100" required="false" />
+
+	</composite:interface>
+
+	<composite:implementation>
+		<center>
+			<p:panelGrid id="viewer" styleClass="noBorder" columns="2">
+
+				<itiGeeks:ByteImageViewer
+					objectImplementsByteArrayHolder="#{cc.attrs.objectImplementsByteArrayHolder}" />
+				<p:commandLink
+					actionListener="#{imageUploaderHandlerBean.deleteOldImage(cc.attrs.objectImplementsByteArrayHolder)}"
+					rendered="#{cc.attrs.objectImplementsByteArrayHolder.holdedImage !=null}"
+					process="viewer" update="viewer">
+					<p:graphicImage name="images/icons/delete.png" />
+
+				</p:commandLink>
+
+
+				<p:fileUpload
+					fileUploadListener="#{imageUploaderHandlerBean.handleFileUpload}"
+					mode="advanced" update="viewer" auto="true" dragDropSupport="true"
+					styleClass="noBorder" uploadLabel="upload" multiple="false"
+					skinSimple="true" allowTypes="/(\.|\/)(gif|jpe?g|png)$/">
+					<f:attribute
+						name="#{imageUploaderHandlerBean.getByteArrayHolderAttributeName()}"
+						value="#{cc.attrs.objectImplementsByteArrayHolder}" />
+
+				</p:fileUpload>
+			</p:panelGrid>
+		</center>
+
+
+	</composite:implementation>
+
+</ui:component>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+       http://www.springframework.org/schema/security
+      http://www.springframework.org/schema/security/spring-security-4.0.xsd">
+	<security:http pattern="/javax.faces.resource/**"
+		security="none"></security:http>
+	<security:http pattern="*/**" security="none"></security:http>
+	<security:http pattern="../WEB-INF/*/**" security="none"></security:http>
+	<security:http pattern="../resources/*/**" security="none"></security:http>
+	<security:http pattern="*jquery*" security="none"></security:http>
+	<security:http pattern="*primefaces*" security="none"></security:http>
+	<security:http pattern="/Login.xhtml" security="none"></security:http>
+
+	<security:http use-expressions="true"   >
+		<security:csrf disabled="true"></security:csrf>
+
+		<security:logout logout-url="/logout" />
+		<security:access-denied-handler
+			error-page="/error/AccessDenied.xhtml" />
+
+		<security:intercept-url access="hasRole('SYSTEM_ADMINSTRATOR')"
+			pattern="/Management/*/**" />
+
+		<security:intercept-url access="hasRole('SYSTEM_ADMINSTRATOR') or hasRole('SAYDALYA_ADMINSTRATOR')"
+			pattern="/MyPharmacy/*/**" />
+
+
+
+
+		<security:intercept-url access="permitAll"
+			pattern="/accessdenied" />
+		<security:intercept-url access="handledByAccessDesionManager"
+			pattern="/Admin/**.*" />
+		<security:intercept-url access="IS_AUTHENTICATED_ANONYMOUSLY"
+			pattern="/Login.xhtml" />
+		<security:logout logout-url="/logout.xhtml"
+			success-handler-ref="customLogoutSuccessHandler" invalidate-session="true"
+			delete-cookies="true" />
+
+		<security:form-login login-page="/Login.xhtml"
+			authentication-failure-url="/Login.xhtml" />
+		<security:http-basic />
+		<security:headers>
+			<security:cache-control />
+			<security:hsts />
+			<security:header name="Pragma" value="no-cache" />
+			<security:header name="Cache-Control" value="no-cache" />
+
+			<security:header name="Expires" value="0" />
+
+		</security:headers>
+
+	</security:http>
+
+	<security:authentication-manager alias="authenticationManager">
+		<security:authentication-provider
+			ref="myAuthenticationProvider">
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+
+
+	
+
+
+
+</beans:beans>
+
+

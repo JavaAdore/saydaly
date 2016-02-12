@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://java.sun.com/xml/ns/persistence
+        http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+
+
+	<persistence-unit name="saydalyPersistenceUnit">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<jta-data-source>java:jboss/datasources/saydaly-DB</jta-data-source>
+		<class>com.saydaly.common.entity.core.BaseAddress</class>
+		<class>com.saydaly.common.entity.core.BundleMessages</class>
+		<class>com.saydaly.common.entity.core.Country</class>
+		<class>com.saydaly.common.entity.core.CountryLanguages</class>
+		<class>com.saydaly.common.entity.core.Language</class>
+		<class>com.saydaly.common.entity.core.Lookup</class>
+		<class>com.saydaly.common.entity.core.LookupCategory</class>
+		<class>com.saydaly.common.entity.core.Role</class>
+		<class>com.saydaly.common.entity.core.SystemUser</class>
+
+
+
+
+		<class>com.saydaly.common.entity.application.ApplicationFeedbackRate</class>
+		<class>com.saydaly.common.entity.application.Category</class>
+		<class>com.saydaly.common.entity.application.ClientPurchaceOrderRate</class>
+		<class>com.saydaly.common.entity.application.OrderNotification</class>
+		<class>com.saydaly.common.entity.application.Pharmacy</class>
+		<class>com.saydaly.common.entity.application.PharmacyAddress</class>
+		<class>com.saydaly.common.entity.application.PharmacyBranch</class>
+		<class>com.saydaly.common.entity.application.PharmacyPhoneNumber</class>
+		<class>com.saydaly.common.entity.application.Product</class>
+		<class>com.saydaly.common.entity.application.ProductCategory</class>
+		<class>com.saydaly.common.entity.application.ProductSideEffect</class>
+		<class>com.saydaly.common.entity.application.ProductUnit</class>
+		<class>com.saydaly.common.entity.application.ProudctType</class>
+		<class>com.saydaly.common.entity.application.PublicClient</class>
+		<class>com.saydaly.common.entity.application.PublicClientAddress</class>
+		<class>com.saydaly.common.entity.application.PublicClientPhoto</class>
+		<class>com.saydaly.common.entity.application.publicClientReport</class>
+		<class>com.saydaly.common.entity.application.PurchaceOrder</class>
+		<class>com.saydaly.common.entity.application.PurchaceOrderImage</class>
+		<class>com.saydaly.common.entity.application.PurchaceOrderItem</class>
+
+
+
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.default_schema" value="saydalyDB" />
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+
+
+		</properties>
+
+
+	</persistence-unit>
+
+</persistence>        	  

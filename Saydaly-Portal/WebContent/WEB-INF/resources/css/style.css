@@ -1,0 +1,23 @@
+
+.loginPasswordGrid tr, .loginPasswordGrid td {
+	border-style: none !important;
+}
+
+#mainMenu  ui-widget-content
+{
+	
+		background: none !important;
+	
+	
+}
+#loginLayout.ui-layout-unit-content ui-widget-content {
+	background: transparent !important;
+}
+
+
+.ui-growl-item-container
+{
+	
+	top : 100px !important;
+}
+
